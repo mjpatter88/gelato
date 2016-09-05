@@ -1,4 +1,4 @@
 FROM ubuntu:trusty
 
-RUN apt-get update && apt-get install -y build-essential check
+RUN apt-get update && apt-get install -y build-essential check valgrind
 
