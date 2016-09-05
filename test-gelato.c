@@ -2,9 +2,11 @@
 #include "gelato.h"
 
 
-START_TEST(first_test)
+START_TEST(one_plus_one)
 {
-    ck_assert_msg(first_function(), "This test should fail.");
+    char returned_sum[MAX_ROMAN_NUMERAL_LENGTH];
+    addition("I", "I", returned_sum);
+    ck_assert_str_eq(returned_sum, "II");
 }
 END_TEST
 
@@ -15,7 +17,7 @@ Suite *build_test_suite(void)
     TCase *test_case = tcase_create("Addition");
 
     suite_add_tcase(test_suite, test_case);
-    tcase_add_test(test_case, first_test);
+    tcase_add_test(test_case, one_plus_one);
     return test_suite;
 }
 

@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra #-Werror
 LIBS=-lcheck -lm -lpthread -lrt
 
 test: test-gelato
