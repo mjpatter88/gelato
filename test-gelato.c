@@ -1,5 +1,6 @@
 #include <check.h>
 #include "gelato.h"
+#include "roman-to-arabic.h"
 
 
 START_TEST(one_plus_one)
@@ -10,14 +11,42 @@ START_TEST(one_plus_one)
 }
 END_TEST
 
+START_TEST(one_plus_two)
+{
+    char returned_sum[MAX_ROMAN_NUMERAL_LENGTH];
+    addition("I", "II", returned_sum);
+    ck_assert_str_eq(returned_sum, "III");
+}
+END_TEST
+
+
+
+
+START_TEST(rtoa_one)
+{
+    int returned_num = 0;
+    int expected_num = 1;
+    returned_num = roman_to_arabic("I");
+    ck_assert_int_eq(returned_num, expected_num);
+}
+END_TEST
+
 
 Suite *build_test_suite(void)
 {
     Suite *test_suite = suite_create("Gelato");
-    TCase *test_case = tcase_create("Addition");
 
-    suite_add_tcase(test_suite, test_case);
-    tcase_add_test(test_case, one_plus_one);
+    TCase *addition_test_case = tcase_create("Addition");
+    suite_add_tcase(test_suite, addition_test_case);
+
+    tcase_add_test(addition_test_case, one_plus_one);
+    tcase_add_test(addition_test_case, one_plus_two);
+
+    TCase *rtoa_test_case = tcase_create("Roman to Arabic Conversion");
+    suite_add_tcase(test_suite, rtoa_test_case);
+
+    tcase_add_test(rtoa_test_case, rtoa_one);
+
     return test_suite;
 }
 
