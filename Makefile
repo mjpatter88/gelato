@@ -1,21 +1,38 @@
 CFLAGS=-Wall -Wextra #-Werror
 LIBS=-lcheck -lm -lpthread -lrt
 
-test: test-gelato
-	./test-gelato
+test: check_all
+	./check_all
 
-test-gelato: gelato.o roman-to-arabic.o test-gelato.o
-	gcc -o test-gelato gelato.o roman-to-arabic.o test-gelato.o $(LIBS)
+test-addition: check_all
+	CK_RUN_SUITE="Addition" ./check_all
 
-test-gelato.o: test-gelato.c gelato.h roman-to-arabic.h
-	gcc $(CFLAGS) -c test-gelato.c
+test-roman-to-arabic: check_all
+	CK_RUN_SUITE="RomanToArabic" ./check_all
+
+
+check_all: check_all.o check_addition.o check_roman_to_arabic.o roman_to_arabic.o gelato.o
+	gcc -o check_all check_all.o check_addition.o check_roman_to_arabic.o roman_to_arabic.o gelato.o $(LIBS)
+
+check_all.o: check_all.c check_all.h
+	gcc $(CFLAGS) -c check_all.c
+
+
+# Check Addition
+check_addition: gelato.o check_addition.o
+	gcc -o check_addition gelato.o check_addition.o $(LIBS)
+
+# Check Roman to Arabic
+check_roman_to_arabic.o: check_roman_to_arabic.c roman_to_arabic.h check_all.h
+	gcc $(CFLAGS) -c check_roman_to_arabic.c
+
 
 gelato.o: gelato.c gelato.h
 	gcc $(CFLAGS) -c gelato.c
 
-roman-to-arabic.o: roman-to-arabic.c roman-to-arabic.h
-	gcc $(CFLAGS) -c roman-to-arabic.c
+roman_to_arabic.o: roman_to_arabic.c roman_to_arabic.h
+	gcc $(CFLAGS) -c roman_to_arabic.c
 
 clean:
 	rm -rf *.o
-	rm -rf test-gelato
+	rm -rf check_all
