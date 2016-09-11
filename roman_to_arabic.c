@@ -13,15 +13,20 @@
 int roman_to_arabic(char *roman_numeral)
 {
     int arabic = 0;
+    int previous_digit_value = 0;
+    int current_digit_value = 0;
+
     size_t len = strlen(roman_numeral);
     for(int i=len-1; i>=0; i--)
     {
         switch(roman_numeral[i])
         {
             case ROM_ONE:
+                current_digit_value = 1;
                 arabic += 1;
                 break;
             case ROM_FIVE:
+                current_digit_value = 5;
                 arabic += 5;
                 break;
             case ROM_TEN:
@@ -42,6 +47,14 @@ int roman_to_arabic(char *roman_numeral)
             default:
                 break;
         }
+
+        // If the previous digit was bigger, this digit should be subtracted. (IV -> 4)
+        // Note: we are working right to left.
+        if(previous_digit_value > current_digit_value)
+        {
+            arabic -= 2 * current_digit_value;
+        }
+        previous_digit_value = current_digit_value;
 
     }
     return arabic;

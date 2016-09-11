@@ -33,7 +33,7 @@ END_TEST
 START_TEST(rtoa_four)
 {
     int returned_num = 0;
-    int expected_num = 3;
+    int expected_num = 4;
     returned_num = roman_to_arabic("IV");
     ck_assert_int_eq(returned_num, expected_num);
 }
