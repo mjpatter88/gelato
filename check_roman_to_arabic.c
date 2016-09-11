@@ -21,6 +21,24 @@ START_TEST(rtoa_two)
 }
 END_TEST
 
+START_TEST(rtoa_three)
+{
+    int returned_num = 0;
+    int expected_num = 3;
+    returned_num = roman_to_arabic("III");
+    ck_assert_int_eq(returned_num, expected_num);
+}
+END_TEST
+
+START_TEST(rtoa_five)
+{
+    int returned_num = 0;
+    int expected_num = 5;
+    returned_num = roman_to_arabic("V");
+    ck_assert_int_eq(returned_num, expected_num);
+}
+END_TEST
+
 Suite *make_roman_to_arabic_suite(void)
 {
     Suite *test_suite = suite_create("RomanToArabic");
@@ -30,6 +48,8 @@ Suite *make_roman_to_arabic_suite(void)
 
     tcase_add_test(rtoa_test_case, rtoa_one);
     tcase_add_test(rtoa_test_case, rtoa_two);
+    tcase_add_test(rtoa_test_case, rtoa_three);
+    tcase_add_test(rtoa_test_case, rtoa_five);
 
     return test_suite;
 }
