@@ -9,8 +9,7 @@ int roman_to_arabic(char *roman_numeral)
 {
     int arabic = 0;
     size_t len = strlen(roman_numeral);
-    int i = 0;
-    for(i=len-1; i>=0; i--)
+    for(int i=len-1; i>=0; i--)
     {
         switch(roman_numeral[i])
         {

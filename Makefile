@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Wextra #-Werror
+CFLAGS=-Wall -Wextra -std=c99 #-Werror
 LIBS=-lcheck -lm -lpthread -lrt
 
 test: check_all
