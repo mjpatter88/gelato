@@ -4,6 +4,7 @@
 
 #define ROM_ONE 'I'
 #define ROM_FIVE 'V'
+#define ROM_TEN 'X'
 
 int roman_to_arabic(char *roman_numeral)
 {
@@ -18,6 +19,9 @@ int roman_to_arabic(char *roman_numeral)
                 break;
             case ROM_FIVE:
                 arabic += 5;
+                break;
+            case ROM_TEN:
+                arabic += 10;
                 break;
             default:
                 break;
