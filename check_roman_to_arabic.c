@@ -75,6 +75,15 @@ START_TEST(rtoa_five_hundred)
 }
 END_TEST
 
+START_TEST(rtoa_one_thousand)
+{
+    int returned_num = 0;
+    int expected_num = 1000;
+    returned_num = roman_to_arabic("M");
+    ck_assert_int_eq(returned_num, expected_num);
+}
+END_TEST
+
 Suite *make_roman_to_arabic_suite(void)
 {
     Suite *test_suite = suite_create("RomanToArabic");
@@ -90,6 +99,7 @@ Suite *make_roman_to_arabic_suite(void)
     tcase_add_test(rtoa_test_case, rtoa_fifty);
     tcase_add_test(rtoa_test_case, rtoa_one_hundred);
     tcase_add_test(rtoa_test_case, rtoa_five_hundred);
+    tcase_add_test(rtoa_test_case, rtoa_one_thousand);
 
     return test_suite;
 }
