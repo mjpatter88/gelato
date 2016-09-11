@@ -23,26 +23,24 @@ int roman_to_arabic(char *roman_numeral)
         {
             case ROM_ONE:
                 current_digit_value = 1;
-                arabic += 1;
                 break;
             case ROM_FIVE:
                 current_digit_value = 5;
-                arabic += 5;
                 break;
             case ROM_TEN:
-                arabic += 10;
+                current_digit_value = 10;
                 break;
             case ROM_FIFTY:
-                arabic += 50;
+                current_digit_value = 50;
                 break;
             case ROM_ONE_HUNDRED:
-                arabic += 100;
+                current_digit_value = 100;
                 break;
             case ROM_FIVE_HUNDRED:
-                arabic += 500;
+                current_digit_value = 500;
                 break;
             case ROM_ONE_THOUSAND:
-                arabic += 1000;
+                current_digit_value = 1000;
                 break;
             default:
                 break;
@@ -52,10 +50,13 @@ int roman_to_arabic(char *roman_numeral)
         // Note: we are working right to left.
         if(previous_digit_value > current_digit_value)
         {
-            arabic -= 2 * current_digit_value;
+            arabic -= current_digit_value;
+        }
+        else
+        {
+            arabic += current_digit_value;
         }
         previous_digit_value = current_digit_value;
-
     }
     return arabic;
 }
