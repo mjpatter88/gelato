@@ -7,6 +7,7 @@
 #define ROM_TEN 'X'
 #define ROM_FIFTY 'L'
 #define ROM_ONE_HUNDRED 'C'
+#define ROM_FIVE_HUNDRED 'D'
 
 int arabic_to_roman(int arabic_numeral, char *roman_numeral)
 {
@@ -14,7 +15,12 @@ int arabic_to_roman(int arabic_numeral, char *roman_numeral)
     size_t index = 0;
     while(arabic_numeral > 0)
     {
-        if(arabic_numeral >= 100)
+        if(arabic_numeral >= 500)
+        {
+            roman_numeral[index] = ROM_FIVE_HUNDRED;
+            arabic_numeral -= 500;
+        }
+        else if(arabic_numeral >= 100)
         {
             roman_numeral[index] = ROM_ONE_HUNDRED;
             arabic_numeral -= 100;
