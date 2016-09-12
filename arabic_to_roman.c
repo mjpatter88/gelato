@@ -3,6 +3,7 @@
 #include "gelato.h"
 
 #define ROM_ONE 'I'
+#define ROM_FIVE 'V'
 
 int arabic_to_roman(int arabic_numeral, char *roman_numeral)
 {
@@ -10,9 +11,17 @@ int arabic_to_roman(int arabic_numeral, char *roman_numeral)
     size_t index = 0;
     while(arabic_numeral > 0)
     {
-        roman_numeral[index] = 'I';
+        if(arabic_numeral >= 5)
+        {
+            roman_numeral[index] = ROM_FIVE;
+            arabic_numeral -= 5;
+        }
+        else
+        {
+            roman_numeral[index] = ROM_ONE;
+            arabic_numeral--;
+        }
         index++;
-        arabic_numeral--;
     }
     return 0;
 }
