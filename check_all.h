@@ -8,6 +8,7 @@
 
 Suite *make_addition_suite(void);
 Suite *make_roman_to_arabic_suite(void);
+Suite *make_arabic_to_roman_suite(void);
 
 
 #endif
