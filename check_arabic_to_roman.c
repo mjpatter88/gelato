@@ -14,6 +14,16 @@ START_TEST(ator_one)
 }
 END_TEST
 
+START_TEST(ator_two)
+{
+    char roman_numeral[MAX_ROMAN_NUMERAL_LENGTH];
+    char expected_roman_numeral[] = "II";
+    int return_code = arabic_to_roman(2, roman_numeral);
+    ck_assert_int_eq(return_code, 0);
+    ck_assert_str_eq(roman_numeral, expected_roman_numeral);
+}
+END_TEST
+
 Suite *make_arabic_to_roman_suite(void)
 {
     Suite *test_suite = suite_create("ArabicToRoman");
@@ -22,6 +32,7 @@ Suite *make_arabic_to_roman_suite(void)
     suite_add_tcase(test_suite, ator_test_case);
 
     tcase_add_test(ator_test_case, ator_one);
+    tcase_add_test(ator_test_case, ator_two);
 
     return test_suite;
 }
